@@ -9,13 +9,13 @@ body {
     font-family: fantasy, Arial;
     text-align: center;
 }
-
 .welcome {
     font-family: fantasy, Arial;
     text-align: center;
     font-style: italic;
     background: #000;
     position: relative;
+    box-shadow: 0 0 20px rgba(0,0,0,10);
 }
 .welcome span {
     position: relative;
@@ -33,13 +33,13 @@ body {
     display: block;
     text-decoration: none;
 }
-
 .choose_chat img {
     position: relative;
     width: 100px;
     height: 100px;
     border-radius: 100px;
     border: 3px solid #2c2c2c;
+    box-shadow: 0 0 15px rgba(0,0,0,10);
 }
 .choose_chat div {
     padding: 20px;
@@ -49,7 +49,6 @@ body {
     font-size: 20px;
     transition: all 0.3s ease;
 }
-
 .choose_chat img:hover {
     border: 3px solid #778899;
     transition: all 0.3s ease;
@@ -58,39 +57,76 @@ body {
     position: relative;
     margin: 2% 5% 10px;
     display: flex;
+    background: black;
     flex-direction: column;
     resize: none;
-    border: 3px solid #fff;
-    overflow-y: auto;
+    border: 3px solid #ffffff;
+    border-radius: 25px;
+    overflow-y: scroll;
     height: 300px;
+    font-size: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,10);
 }
 .message {
     border-radius: 25px;
-    padding: 5px 30% 5px;
+    padding: 5px 100px 5px;
     position: relative;
+    box-shadow: 0 0 10px #ffffff;
 }
+::-webkit-scrollbar {
+    width: 0;
 
-.send {
+}
+.buttons {
     border-radius: 25px;
     position: relative;
     padding: 5px 33% 10px;
+}
+.send {
+    border-radius: 25px;
+    position: relative;
+    margin-top: 10px;
+    padding: 5px 33% 10px;
     background: linear-gradient(90deg,#0162c8,#55e7fc);
     color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,10);
 }
 .send:hover {
-    background: linear-gradient(90deg,#755bea,#ff72c0);
-    border: 3px solid #2c2c2c;
-    transition: all 0.3s ease;
-
+    background: linear-gradient(90deg,#008080,#4682B4);
+}
+.clear {
+    border-radius: 25px;
+    position: relative;
+    padding: 5px 33% 10px;
+    background: linear-gradient(90deg,#FF0000,#8B0000);
+    color: white;
+    margin-top: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,10);
+}
+.clear:hover {
+    background: linear-gradient(90deg,#DC143C,#FF4500);
 }
 .send_message {
+    float: right;
     background: white;
-    padding: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    margin-left: 20px;
+    padding: 20px 30px;
     border-radius: 100px;
-    min-width: 5px;
+    word-wrap: break-word;
+    height: auto;
+    max-width: 200px;
+    text-align: left;
+}
+.pict {
+    border-radius: 100px;
+    border: 2px solid #C0C0C0;
+    box-shadow: 0 0 10px #C0C0C0;;
+    margin-left: 15px;
     height: 45px;
-    text-align: right;
+    width: 45px;
+    margin-top: 10px;
 }
 
 @keyframes animate {
