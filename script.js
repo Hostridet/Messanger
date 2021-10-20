@@ -3,8 +3,6 @@ let CurrentUser = names[0];
 chatMenu = document.querySelector('.chat')
 CurrentUser.style.border = "3px solid #fff";
 
-
-
 let Egor = [];
 let Egor_count = Number(localStorage.getItem('Egor_count'));
 let Nasty = [];
@@ -15,23 +13,24 @@ let Sasha = [];
 let Sasha_count = Number(localStorage.getItem('Sasha_count'));
 let Lesha = [];
 let Lesha_count = Number(localStorage.getItem('Lesha_count'));
+
 getLocal();
-//Загрузка первого дурака
+
 loadCurrentUser();
+
 function sendMessage()
 {
-    let new_message = createMessage()
-    if(new_message.innerHTML.length <= 30 && new_message.innerHTML !== "")
+    let new_message = createMessage(readMessage())
+    if(new_message.innerHTML.length <= 50 && new_message.innerHTML !== "")
     {
         let img = createImage();
         chatMenu.appendChild(img);
         chatMenu.appendChild(new_message);
-        //storageInput = messageCounter;
         addToCurrentUser(new_message.innerHTML);
         console.log(Egor_count);
     }
 }
-//Считывание текста и очищения поля с текстом
+
 function readMessage()
 {
     let gotMessage = document.querySelector('.message');
@@ -40,7 +39,6 @@ function readMessage()
     return string;
 }
 
-//Выбор пользователя нажатием мыши
 names.forEach(name => name.addEventListener("click", click));
 function click(e)
 {
@@ -50,52 +48,35 @@ function click(e)
     loadCurrentUser();
     this.style.border ="3px solid #fff";
 }
-//Отправление сообщения через Enter
+
 document.getElementsByName('message-text')[0].addEventListener('keyup', function (data) {
     if (data.key === 'Enter') {
         sendMessage();
     }
 })
-//
+
 function getLocal()
 {
     if (Egor_count)
-    {
-        for(let i = 0; i < Egor_count; i++)
-        {
-            Egor.push(localStorage.getItem("Egor" + i.toString()));
-        }
-    }
+        local(Egor, Egor_count, "Egor");
     if (Lesha_count)
-    {
-        for(let i = 0; i < Lesha_count; i++)
-        {
-            Lesha.push(localStorage.getItem("Lesha" + i.toString()));
-        }
-    }
+        local(Lesha, Lesha_count, "Lesha");
     if (Nasty_count)
-    {
-        for(let i = 0; i < Nasty_count; i++)
-        {
-            Nasty.push(localStorage.getItem("Nasty" + i.toString()));
-        }
-    }
+        local(Nasty, Nasty_count, "Nasty");
     if (Elisey_count)
-    {
-        for(let i = 0; i < Elisey_count; i++)
-        {
-            Elisey.push(localStorage.getItem("Elisey" + i.toString()));
-        }
-    }
+        local(Elisey, Elisey_count, "Elisey");
     if (Sasha_count)
+        local(Sasha, Sasha_count, "Sasha");
+}
+
+function local(user, counter, name)
+{
+    for(let i = 0; i < counter; i++)
     {
-        for(let i = 0; i < Sasha_count; i++)
-        {
-            Sasha.push(localStorage.getItem("Sasha" + i.toString()));
-        }
+        user.push(localStorage.getItem(name + i.toString()));
     }
 }
-//Очистить все сообщения
+
 function clearAll()
 {
     localStorage.clear();
@@ -113,11 +94,13 @@ function clearAll()
     Elisey = [];
     Nasty = [];
 }
+
 function clearCurrentScreen() {
     while (chatMenu.firstChild) {
         chatMenu.removeChild(chatMenu.lastChild);
     }
 }
+
 function loadCurrentUser()
 {
     switch (CurrentUser.alt)
@@ -134,25 +117,26 @@ function loadCurrentUser()
             break;
     }
 }
+
 function load(user){
     for(let i = 0; i < user.length; i++)
     {
         let img = createImage()
         let string = user[i];
-        let new_message = document.createElement("div");
-        new_message.setAttribute("class", "send_message");
-        new_message.innerHTML = string;
+        let new_message = createMessage(string);
         chatMenu.appendChild(img);
         chatMenu.appendChild(new_message);
     }
 }
-function createMessage()
+
+function createMessage(got_message)
 {
     let new_message = document.createElement("div");
     new_message.setAttribute("class", "send_message")
-    new_message.innerHTML = readMessage();
+    new_message.innerHTML = got_message;
     return new_message;
 }
+
 function createImage()
 {
     let img = document.createElement("img");
@@ -160,6 +144,7 @@ function createImage()
     img.setAttribute("class", "pict");
     return img;
 }
+
 function addToCurrentUser(text)
 {
     switch (CurrentUser.alt)
